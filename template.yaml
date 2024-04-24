@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  data-updater-changhong
+
+  Sample SAM Template for data-updater-changhong
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 128
+
+Resources:
+  DataUpdaterFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: data_updater/
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Environment:
+        Variables:
+          DB_HOST: "database-1.cv1hm7cpehlc.us-east-1.rds.amazonaws.com"
+          DB_USER: "admin"
+          DB_PASSWORD: "Cde#4rfv"
+          DB_NAME: "changhong"
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  DataUpdaterFunction:
+    Description: "Data Updater Lambda Function ARN"
+    Value: !GetAtt DataUpdaterFunction.Arn
+  DataUpdaterFunctionIamRole:
+    Description: "Implicit IAM Role created for Data Updater function"
+    Value: !GetAtt DataUpdaterFunctionRole.Arn
