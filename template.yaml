@@ -22,11 +22,16 @@ Resources:
         - x86_64
       Environment:
         Variables:
-          DB_HOST: "database-1.cv1hm7cpehlc.us-east-1.rds.amazonaws.com"
-          DB_USER: "admin"
-          DB_PASSWORD: "Cde#4rfv"
-          DB_NAME: "changhong"
-
+          DB_HOST: ""
+          DB_USER: ""
+          DB_PASSWORD: ""
+          DB_NAME: ""
+      Policies:
+          AmazonRDSFullAccess
+          AmazonVPCFullAccess
+          AWSLambdaBasicExecutionRole
+          AWSLambdaVPCAccessExecutionRole
+          NetworkAdministrator
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM

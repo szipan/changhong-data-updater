@@ -64,6 +64,7 @@ def lambda_handler(event, context):
     except mysql.connector.Error as err:
         print("Error: {}".format(err))
 
+
     finally:
         # Close cursor and connection
         if 'cursor' in locals() and cursor is not None:
